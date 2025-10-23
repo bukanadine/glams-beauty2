@@ -1,0 +1,70 @@
+@layout.app({title: 'Seller Dashboard - Glams'})
+
+  @slot('meta')
+    @vite(['resources/css/styles-seller.css'])
+  @endslot
+  
+  @slot('main')
+
+    <div class="seller-dashboard">
+      <div class="dashboard-header">
+        <h1>Seller Dashboard</h1>
+        <div style="display: flex; gap: 12px;">
+          <a href="{{ route('seller.wishlists') }}">
+            <button class="btn-view-wishlist">View User Wishlists</button>
+          </a>
+          <a href="{{ route('seller.products.create') }}">
+            <button class="btn-add-product">Add New Product</button>
+          </a>
+        </div>
+      </div>
+
+      @if(flashMessages.has('success'))
+        <div class="alert alert-success">
+          {{ flashMessages.get('success') }}
+        </div>
+      @endif
+
+      <div class="products-table">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @each(product in products)
+            <tr>
+              <td>{{ product.id }}</td>
+              <td>
+                <img src="{{ product.image }}" alt="{{ product.name }}" style="width: 60px; height: 60px; object-fit: cover;">
+              </td>
+              <td>{{ product.name }}</td>
+              <td>Rp {{ product.price.toLocaleString('id-ID') }}</td>
+              <td>
+                <div class="action-buttons">
+                  <a href="{{ route('seller.products.edit', [product.id]) }}">
+                    <button class="btn-edit">Edit</button>
+                  </a>
+                  <form action="{{ route('seller.products.destroy', [product.id]) }}?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            @else
+            <tr>
+              <td colspan="5" style="text-align: center; padding: 40px;">No products found. <a href="{{ route('seller.products.create') }}">Add your first product</a></td>
+            </tr>
+            @endeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  @endslot
+@end

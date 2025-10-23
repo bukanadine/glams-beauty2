@@ -1,0 +1,102 @@
+@layout.app({title: 'Wishlist - Glams'})
+
+@slot('meta')
+  @vite(['resources/css/styles-product.css'])
+  <style>
+    .wishlist-header {
+      text-align: center;
+      padding: 40px 0;
+      background: linear-gradient(135deg, #FFF5F5 0%, #FFE8E8 100%);
+      margin-bottom: 40px;
+    }
+    .wishlist-header h1 {
+      font-size: 36px;
+      color: #333;
+      margin-bottom: 12px;
+    }
+    .wishlist-header p {
+      font-size: 16px;
+      color: #666;
+    }
+    .add-wishlist-btn {
+      background: linear-gradient(135deg, #F4BFBF, #E8A5A5);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+    .add-wishlist-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(244, 191, 191, 0.4);
+    }
+    .add-wishlist-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+  </style>
+@endslot
+
+@slot('main')
+<main>
+  <div class="wishlist-header">
+    <h1>💝 My Wishlist</h1>
+    <p>Browse and add your favorite products to your wishlist</p>
+  </div>
+
+  @if(flashMessages.has('success'))
+    <div style="background: #EFE; color: #3C3; padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px solid #CFC;">
+      <strong>✓ Success:</strong> {{ flashMessages.get('success') }}
+    </div>
+  @endif
+
+  @if(flashMessages.has('info'))
+    <div style="background: #E8F4FF; color: #0066CC; padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px solid #B3D9FF;">
+      <strong>ℹ️ Info:</strong> {{ flashMessages.get('info') }}
+    </div>
+  @endif
+
+  <section class="products">
+    <div class="product-grid">
+      @each(product in products)
+      <article class="product-card">
+        <a href="{{ route('products.show', [product.id]) }}">
+          <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image">
+        </a>
+        <div class="product-details">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <p class="product-price">Rp {{ product.price.toLocaleString('id-ID') }}</p>
+          
+          <form action="{{ route('wishlist.store') }}" method="POST">
+            {{ csrfField() }}
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <button type="submit" class="add-wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              Add to Wishlist
+            </button>
+          </form>
+        </div>
+      </article>
+      @else
+      <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+        <div style="font-size: 64px; margin-bottom: 16px;">🛍️</div>
+        <h2 style="font-size: 24px; color: #333; margin-bottom: 8px;">No Products Yet</h2>
+        <p style="color: #666;">Check back later for amazing products!</p>
+      </div>
+      @endeach
+    </div>
+  </section>
+</main>
+@endslot
+
+@end

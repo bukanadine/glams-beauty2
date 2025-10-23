@@ -25,7 +25,7 @@ server.errorHandler(() => import('#exceptions/handler'))
 server.use([
   () => import('#middleware/container_bindings_middleware'),
   () => import('@adonisjs/static/static_middleware'),
-  () => import('@adonisjs/vite/vite_middleware'),
+  () => import('@adonisjs/vite/vite_middleware')
 ])
 
 /**
@@ -45,5 +45,7 @@ router.use([
  */
 export const middleware = router.named({
   guest: () => import('#middleware/guest_middleware'),
-  auth: () => import('#middleware/auth_middleware')
+  auth: () => import('#middleware/auth_middleware'),
+  sellerAuth: () => import('#middleware/seller_auth_middleware'),
+  buyerAuth: () => import('#middleware/buyer_auth_middleware')
 })

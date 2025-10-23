@@ -1,16 +1,27 @@
  <header>
-            <img src="resources/assets/glamzz.png" alt="logo" class="logo">
-            <nav style="margin-right: 500px;">
+            <a href="{{ route('home') }}">
+                <img src="/assets/glamzz.png" alt="Glams Logo" class="logo">
+            </a>
+            <nav style="margin-right: 300px;">
                 <ul>
-                    <li class="active"><a href="{{route("home")}}">Home</a></li>
-                    <li><a href="{{route("products")}}">Products</a></li>
-                    <li><a href="{{route("about")}}">About</a></li>
-                    <li><a href="{{route("contact")}}">Contact</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('products') }}">Products</a></li>
+                    <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('contact') }}">Contact</a></li>
+                    @if(auth.user && auth.user.role === 'seller')
+                      <li><a href="{{ route('seller.dashboard') }}" style="color: #D4AF37; font-weight: 600;">Seller Dashboard</a></li>
+                    @endif
                 </ul>
             </nav>
             <nav>
                 <ul>
-                    <li><a href="{{route("cart")}}"><img src="resources/assets/cart.png" alt="" width="50"></a></li> 
+                    <li><a href="{{ route('cart') }}"><img src="/assets/cart.png" alt="Cart" width="50"></a></li>
+                    <li class="profile-link">
+                      <a href="{{ route('profile') }}" title="Profile">
+                        <img src="/assets/login.png" alt="Profile" width="50">
+                      </a>
+                    </li>
                 </ul>
             </nav>
         </header>

@@ -1,0 +1,372 @@
+@layout.app({title: 'Profile - Glams'})
+
+@slot('meta')
+  @vite(['resources/css/styles-index.css'])
+  <style>
+  .profile-container {
+    max-width: 1500px;
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+
+  .alert {
+    padding: 24px 32px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    font-size: 18px;
+  }
+
+  .alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+
+  .alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+
+  .profile-card {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .profile-header {
+    background: white;
+    padding: 60px 80px 40px;
+    text-align: center;
+  }
+
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile-avatar img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+  }
+
+  .profile-title {
+    font-size: 40px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    color: #333;
+  }
+
+  .profile-subtitle {
+    font-size: 24px;
+    color: #666;
+    margin: 0;
+  }
+
+  .profile-content {
+    padding: 40px 80px 60px;
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .info-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .info-value {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .badge-primary {
+    background: #F4BFBF;
+    color: #8B4545;
+  }
+
+  .badge-success {
+    background: #C8E6C9;
+    color: #2E7D32;
+  }
+
+  .profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 30px;
+    border-top: 2px solid #e0e0e0;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 40px;
+    border-radius: 16px;
+    font-size: 22px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 4px solid transparent;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .btn-outline {
+    background: white;
+    color: #F4BFBF;
+    border: 4px solid #F4BFBF;
+  }
+
+  .btn-outline:hover {
+    background: #F4BFBF;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 191, 191, 0.3);
+  }
+
+  .btn-logout {
+    background: #ef5350;
+    color: white;
+    border: none;
+  }
+
+  .btn-logout:hover {
+    background: #e53935;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(239, 83, 80, 0.3);
+  }
+
+  .btn svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .profile-guest .profile-header {
+    padding: 80px 80px 40px;
+  }
+
+  .login-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .btn-primary {
+    background: #F4BFBF;
+    color: white;
+    padding: 22px 48px;
+    font-size: 24px;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: #EAA5A5;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(244, 191, 191, 0.4);
+  }
+
+  .btn-large {
+    min-width: 100%;
+  }
+
+  .register-text {
+    font-size: 22px;
+    color: #666;
+    text-align: center;
+    margin: 0;
+  }
+
+  .register-link {
+    color: #F4BFBF;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .register-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .profile-container {
+      margin: 30px auto;
+      padding: 0 16px;
+      max-width: 400px;
+    }
+
+    .profile-card {
+      aspect-ratio: auto;
+    }
+
+    .profile-header {
+      padding: 20px 24px 14px;
+    }
+
+    .profile-content {
+      padding: 14px 24px 20px;
+    }
+
+    .profile-title {
+      font-size: 18px;
+    }
+
+    .profile-avatar {
+      width: 60px;
+      height: 60px;
+    }
+
+    .profile-avatar img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  </style>
+@end
+
+<div class="profile-container">
+  @if(flashMessages.has('success'))
+    <div class="alert alert-success">
+      {{ flashMessages.get('success') }}
+    </div>
+  @end
+
+  @if(flashMessages.has('error'))
+    <div class="alert alert-error">
+      {{ flashMessages.get('error') }}
+    </div>
+  @end
+
+  @if(user)
+    {{-- User is logged in - show profile --}}
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <img src="/assets/login.png" alt="Profile" width="80">
+        </div>
+        <h1 class="profile-title">My Profile</h1>
+      </div>
+
+      <div class="profile-content">
+        <div class="profile-info">
+          <div class="info-item">
+            <label class="info-label">Full Name</label>
+            <p class="info-value">{{ user.fullName }}</p>
+          </div>
+
+          <div class="info-item">
+            <label class="info-label">Email Address</label>
+            <p class="info-value">{{ user.email }}</p>
+          </div>
+
+          <div class="info-item">
+            <label class="info-label">Account Type</label>
+            <p class="info-value">
+              <span class="badge badge-{{ user.role === 'seller' ? 'primary' : 'success' }}">
+                {{ user.role === 'seller' ? '🏪 Seller' : '🛍️ Buyer' }}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="profile-actions">
+          @if(user.role === 'buyer')
+            <a href="{{ route('wishlist') }}" class="btn btn-outline">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+              </svg>
+              My Wishlist
+            </a>
+            <a href="{{ route('cart') }}" class="btn btn-outline">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+              </svg>
+              My Cart
+            </a>
+          @end
+
+          @if(user.role === 'seller')
+            <a href="{{ route('seller.dashboard') }}" class="btn btn-outline">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+              </svg>
+              Seller Dashboard
+            </a>
+            <a href="{{ route('seller.wishlists') }}" class="btn btn-outline">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              View Wishlists
+            </a>
+          @end
+
+          <form action="{{ route('auth.logout') }}" method="POST">
+            {{ csrfField() }}
+            <button type="submit" class="btn btn-logout">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+              </svg>
+              Logout
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  @else
+    {{-- User is not logged in - show login prompt --}}
+    <div class="profile-card profile-guest">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <img src="/assets/login.png" alt="Login" width="80">
+        </div>
+        <h1 class="profile-title">Welcome to Glams Beauty</h1>
+        <p class="profile-subtitle">Please login to view your profile</p>
+      </div>
+
+      <div class="profile-content">
+        <div class="login-options">
+          <a href="{{ route('auth.login') }}" class="btn btn-primary btn-large">
+            Login to Your Account
+          </a>
+          <p class="register-text">
+            Don't have an account? 
+            <a href="{{ route('auth.register') }}" class="register-link">Register here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  @end
+</div>
+@end

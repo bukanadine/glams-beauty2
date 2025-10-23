@@ -6,102 +6,87 @@
   
   @slot('main')
     <div class="hero">
-      <video class="hero-video" autoplay muted loop playsinline poster="assets/bg.png">
-        <source src="resources/assets/bg-video.mp4" type="video/mp4" />
+      <video class="hero-video" autoplay muted loop playsinline poster="/assets/bg.png">
+        <source src="/assets/bg-video.mp4" type="video/mp4" />
       </video>
       <div class="easy-access">
         <span style="color: rgb(8, 0, 5);" class="easy-access">The Art of </span>
-        <span class="easy-access">Glamour</span>        <br />
-        <a href="product.html">          <div class="btn-shop-now" style="position: relative; bottom: 20px;">
+        <span class="easy-access">Glamour</span>
+        <br />
+        <a href="{{ route('products') }}">
+          <div class="btn-shop-now" style="position: relative; bottom: 20px;">
             Shop Now
-          </div></a>
+          </div>
+        </a>
       </div>
     </div>
-    <img class="why-overlay" src="resources/assets/desc.png" alt="What is glams?" />
+    <img class="why-overlay" src="/assets/desc.png" alt="What is glams?" />
     <div class="recommended-product">
       <p style="margin-bottom: 30px;">
         Best Sellers
       </p>
+
+      @if(flashMessages.has('success'))
+        <div style="padding: 15px; margin-bottom: 20px; background: #d4edda; color: #155724; border-radius: 4px; text-align: center;">
+          {{ flashMessages.get('success') }}
+        </div>
+      @endif
+
+      @if(flashMessages.has('info'))
+        <div style="padding: 15px; margin-bottom: 20px; background: #d1ecf1; color: #0c5460; border-radius: 4px; text-align: center;">
+          {{ flashMessages.get('info') }}
+        </div>
+      @endif
+
       <div class="catalogue-wrapper">
         <div class="catalogue">
 
-          <!-- Produk 1 -->
+          @each(product in bestSellers)
+          <!-- Product {{ product.id }} -->
           <div class="product">
-            <a href="details.html">
+            <a href="{{ route('products.show', [product.id]) }}">
               <img
                 style="object-fit: cover; border: 1px solid #dadada;"
-                src="resources/assets/sample1.jpg"
+                src="{{ product.image }}"
                 width="292"
                 height="292"
-                alt="Lipstick Glow"
+                alt="{{ product.name }}"
               />
             </a>
             <p style="font-weight: 500;">
-              Maybelline Lash Sensational Sky High Mascara
-            </p>
-            <p style="font-weight: 500; font-size: 16px">
-              Sold: 120
+              {{ product.name }}
             </p>
             <p style="margin-top: 10px; margin-bottom: 10px;">
-              Rp 279.000
+              Rp {{ product.price.toLocaleString('id-ID') }}
             </p>
-            <a href="{{route("details")}}">              <button class="details-btn">View Details</button></a>
+            <form action="{{ route('cart.store') }}" method="POST" style="margin-bottom: 5px;">
+              {{ csrfField() }}
+              <input type="hidden" name="product_id" value="{{ product.id }}" />
+              <input type="hidden" name="quantity" value="1" />
+              <button type="submit" class="btn-add-to-cart" style="width: 292px;">Add to Cart</button>
+            </form>
+            <form action="{{ route('wishlist.store') }}" method="POST" style="margin-bottom: 5px;">
+              {{ csrfField() }}
+              <input type="hidden" name="product_id" value="{{ product.id }}" />
+              <input type="hidden" name="user_name" value="Guest" />
+              <button type="submit" class="btn-add-to-cart" style="width: 292px; background: #F4BFBF; border-color: #F4BFBF;">Add to Wishlist</button>
+            </form>
+            <a href="{{ route('products.show', [product.id]) }}">
+              <button class="details-btn">View Details</button>
+            </a>
           </div>
+          @endeach
 
-          <!-- Produk 2 -->
-          <div class="product">
-            <a href="{{route("details")}}">
-              <img
-                style="object-fit: cover; border: 1px solid #dadada;"
-                src="resources/assets/sample2.jpg"
-                width="292"
-                height="292"
-                alt="Foundation Matte"
-              />
-            </a>
-            <p style="font-weight: 500;">
-              Rare Beauty Soft Pinch Luminous Powder Blush
-            </p>
-            <p style="font-weight: 500; font-size: 16px">
-              Sold: 95
-            </p>
-            <p style="margin-top: 10px; margin-bottom: 10px;">
-              Rp 364.000
-            </p>
-            <a href="{{route("details")}}">              <button class="details-btn">View Details</button></a>
-          </div>
-
-          <!-- Produk 3 -->
-          <div class="product">
-            <a href="{{route("details")}}">
-              <img
-                style="object-fit: cover; border: 1px solid #dadada;"
-                src="resources/assets/sample3.jpg"
-                width="292"
-                height="292"
-                alt="Blush On Pink"
-              />
-            </a>
-            <p style="font-weight: 500;">
-              Rose Inc Satin Lip Color Rich Refillable Lipstick
-            </p>
-            <p style="font-weight: 500; font-size: 16px">
-              Sold: 80
-            </p>
-            <p style="margin-top: 10px; margin-bottom: 10px;">
-              Rp 220.000
-            </p>
-            <a href="{{route("details")}}">              <button class="details-btn">View Details</button></a>
-          </div>
         </div>
       </div>
       <div class="view-more">
-        <a href="{{route("products")}}">          <div class="btn-add-to-cart">
+        <a href="{{ route('products') }}">
+          <div class="btn-add-to-cart">
             View More
-          </div></a>
+          </div>
+        </a>
       </div>
     </div>
-  </div>
 
-@endslot
+  @endslot
 @end
