@@ -1,0 +1,107 @@
+@layout.app({title: 'Glams'})
+
+  @slot('meta')
+    @vite(['resources/css/styles-index.css'])
+  @endslot
+  
+  @slot('main')
+    <div class="hero">
+      <video class="hero-video" autoplay muted loop playsinline poster="assets/bg.png">
+        <source src="resources/assets/bg-video.mp4" type="video/mp4" />
+      </video>
+      <div class="easy-access">
+        <span style="color: rgb(8, 0, 5);" class="easy-access">The Art of </span>
+        <span class="easy-access">Glamour</span>        <br />
+        <a href="product.html">          <div class="btn-shop-now" style="position: relative; bottom: 20px;">
+            Shop Now
+          </div></a>
+      </div>
+    </div>
+    <img class="why-overlay" src="resources/assets/desc.png" alt="What is glams?" />
+    <div class="recommended-product">
+      <p style="margin-bottom: 30px;">
+        Best Sellers
+      </p>
+      <div class="catalogue-wrapper">
+        <div class="catalogue">
+
+          <!-- Produk 1 -->
+          <div class="product">
+            <a href="details.html">
+              <img
+                style="object-fit: cover; border: 1px solid #dadada;"
+                src="resources/assets/sample1.jpg"
+                width="292"
+                height="292"
+                alt="Lipstick Glow"
+              />
+            </a>
+            <p style="font-weight: 500;">
+              Maybelline Lash Sensational Sky High Mascara
+            </p>
+            <p style="font-weight: 500; font-size: 16px">
+              Sold: 120
+            </p>
+            <p style="margin-top: 10px; margin-bottom: 10px;">
+              Rp 279.000
+            </p>
+            <a href="{{route("details")}}">              <button class="details-btn">View Details</button></a>
+          </div>
+
+          <!-- Produk 2 -->
+          <div class="product">
+            <a href="{{route("details")}}">
+              <img
+                style="object-fit: cover; border: 1px solid #dadada;"
+                src="resources/assets/sample2.jpg"
+                width="292"
+                height="292"
+                alt="Foundation Matte"
+              />
+            </a>
+            <p style="font-weight: 500;">
+              Rare Beauty Soft Pinch Luminous Powder Blush
+            </p>
+            <p style="font-weight: 500; font-size: 16px">
+              Sold: 95
+            </p>
+            <p style="margin-top: 10px; margin-bottom: 10px;">
+              Rp 364.000
+            </p>
+            <a href="{{route("details")}}">              <button class="details-btn">View Details</button></a>
+          </div>
+
+          <!-- Produk 3 -->
+          <div class="product">
+            <a href="{{route("details")}}">
+              <img
+                style="object-fit: cover; border: 1px solid #dadada;"
+                src="resources/assets/sample3.jpg"
+                width="292"
+                height="292"
+                alt="Blush On Pink"
+              />
+            </a>
+            <p style="font-weight: 500;">
+              Rose Inc Satin Lip Color Rich Refillable Lipstick
+            </p>
+            <p style="font-weight: 500; font-size: 16px">
+              Sold: 80
+            </p>
+            <p style="margin-top: 10px; margin-bottom: 10px;">
+              Rp 220.000
+            </p>
+            <a href="{{route("details")}}">              <button class="details-btn">View Details</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="view-more">
+        <a href="{{route("products")}}">          <div class="btn-add-to-cart">
+            View More
+          </div></a>
+      </div>
+    </div>
+  </div>
+
+@endslot
+@end

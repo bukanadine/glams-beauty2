@@ -1,0 +1,39 @@
+@layout.app({title: 'Glams'})
+
+  @slot('meta')
+    @vite(['resources/css/styles-contact.css'])
+  @endslot
+  
+  @slot('main')
+
+<section class="contact-section">
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you! Whether it’s a question, feedback, or collaboration — feel free to reach out.</p>
+
+    <div class="contact-container">
+      <!-- Form -->
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="6" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <!-- Info -->
+      <div class="contact-info">
+        <h3>Our Info</h3>
+        <p>Email: support@glams.com</p>
+        <p>Phone: +62 812 3456 7890</p>
+        <p>Address: Jakarta, Indonesia</p>
+        <div class="social-links">
+          <a href="#"><img src="resources/assets/instagram.png" alt="Instagram"></a>
+          <a href="#"><img src="resources/assets/facebook.png" alt="Facebook"></a>
+          <a href="#"><img src="resources/assets/tiktok.png" alt="TikTok"></a>
+          <a href="#"><img src="resources/assets/youtube.png" alt="YouTube"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  @endslot
+@end

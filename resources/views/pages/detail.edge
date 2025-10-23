@@ -1,0 +1,43 @@
+@layout.app({title: 'Glams'})
+
+  @slot('meta')
+    @vite(['resources/css/styles-detail.css'])
+  @endslot
+  
+  @slot('main')
+
+  <article class="detail-product">
+      <!-- Gallery -->
+      <div class="product-gallery">
+        <img src="resources/assets/sample1.jpg" alt="Product" class="main-image" id="mainImage">
+        <div id="thumbs" class="thumbs"></div>
+      </div>
+
+      <!-- Info -->
+      <div class="product-info">
+        <!-- Seller -->
+        <div class="store-info">
+          <div class="store-image">
+            <img src="resources/assets/user.png" alt="Default Seller Image" class="seller-image">
+          </div>
+          <div class="store-details">
+            <h2 class="seller-name">Seller Name</h2>
+          </div>
+        </div>
+
+        <!-- Details -->
+        <div class="product-details">
+          <h2 class="title">Sample Product Name</h2>
+          <p class="desc">Desc: This is a sample description of the product.</p>
+          <p class="sold">Sold: 0</p>
+          <p class="price">Rp -</p>
+          <div class="quantity-control">
+            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+          </div>
+          <a href="cart.html" class="add-to-cart" id="addToCartLink">Add to Cart</a>
+        </div>
+      </div>
+    </article>
+
+  @endslot
+@end

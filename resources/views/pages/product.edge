@@ -1,0 +1,212 @@
+@layout.app({title: 'Glams'})
+
+  @slot('meta')
+    @vite(['resources/css/styles-product.css'])
+  @endslot
+  
+  @slot('main')
+
+    <div class="recommended-product">
+      <p style="margin-bottom: 30px;">
+        Products
+      </p>
+      <div class="category-filter">
+        <button class="filter-btn active" data-category="all">All Products</button>
+        <button class="filter-btn" data-category="1">Face</button>
+        <button class="filter-btn" data-category="2">Eyes</button>
+        <button class="filter-btn" data-category="3">Lips</button>
+      </div>
+
+      <div class="catalogue">
+        <!-- Produk 1 (Eyes) -->
+        <div class="product" data-category="2" data-id="1">
+          <a href="details.html?idProduct=1">
+            <img
+              class="product-image"
+              src="resources/assets/sample1.jpg"
+              width="292"
+              height="292"
+              alt="Product 1"
+            />
+          </a>
+          <p style="font-weight: 500;">
+            Maybelline Lash Sensation Sky <br />High Mascara
+          </p>
+          <p style="font-weight: 500; font-size: 16px">
+            Sold: 120
+          </p>
+          <p style="margin-top:10px; margin-bottom:10px;">
+            Rp 279.000
+          </p>
+          <form action="cart.html" method="GET">
+            <input type="hidden" name="idProduct" value="1" />            <!-- <-- perbaiki -->
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="btn-add-to-cart">Add to Cart</button>
+          </form>
+          <a href="details.html?idProduct=1">            <button class="details-btn">View Details</button></a>
+        </div>
+
+        <!-- Produk 2 (Face) -->
+        <div class="product" data-category="1" data-id="2">
+          <a href="details.html?idProduct=2">
+            <img
+              class="product-image"
+              src="resources/assets/sample2.jpg"
+              width="292"
+              height="292"
+              alt="Product 2"
+            />
+          </a>
+          <p style="font-weight: 500;">
+            Rare Beauty Soft Pinch Luminous <br />Powder Blush
+          </p>
+          <p style="font-weight: 500; font-size: 16px">
+            Sold: 105
+          </p>
+          <p style="margin-top:10px; margin-bottom:10px;">
+            Rp 364.000
+          </p>
+          <form action="cart.html" method="GET">
+            <input type="hidden" name="idProduct" value="2" />
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="btn-add-to-cart">Add to Cart</button>
+          </form>
+          <a href="details.html?idProduct=2">            <button class="details-btn">View Details</button></a>
+        </div>
+
+        <!-- Produk 3 (Lips) -->
+        <div class="product" data-category="3" data-id="3">
+          <a href="details.html?idProduct=3">
+            <img
+              class="product-image"
+              src="resources/assets/sample3.jpg"
+              width="292"
+              height="292"
+              alt="Product 3"
+            />
+          </a>
+          <p style="font-weight: 500;">
+            Rose Inc Satin Lip Color Rich <br />Refillable Lipstick
+          </p>
+          <p style="font-weight: 500; font-size: 16px">
+            Sold: 200
+          </p>
+          <p style="margin-top:10px; margin-bottom:10px;">
+            Rp 220.000
+          </p>
+          <form action="cart.html" method="GET">
+            <input type="hidden" name="idProduct" value="3" />
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="btn-add-to-cart">Add to Cart</button>
+          </form>
+          <a href="details.html?idProduct=3">            <button class="details-btn">View Details</button></a>
+        </div>
+
+        <!-- Produk 4 (Eyes) -->
+        <div class="product" data-category="2" data-id="4">
+          <a href="details.html?idProduct=4">
+            <img
+              class="product-image"
+              src="resources/assets/sample4.jpg"
+              width="292"
+              height="292"
+              alt="Product 4"
+            />
+          </a>
+          <p style="font-weight: 500;">
+            Cosnori Easy Draw Auto Eyebrow
+          </p>
+          <p style="font-weight: 500; font-size: 16px">
+            Sold: 85
+          </p>
+          <p style="margin-top:10px; margin-bottom:10px;">
+            Rp 125.000
+          </p>
+          <form action="cart.html" method="GET">
+            <input type="hidden" name="idProduct" value="4" />
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="btn-add-to-cart">Add to Cart</button>
+          </form>
+          <a href="details.html?idProduct=4">            <button class="details-btn">View Details</button></a>
+        </div>
+
+        <!-- Produk 5 (Eyes) -->
+        <div class="product" data-category="2" data-id="5">
+          <a href="details.html?idProduct=5">
+            <img
+              class="product-image"
+              src="resources/assets/sample5.jpg"
+              width="292"
+              height="292"
+              alt="Product 5"
+            />
+          </a>
+          <p style="font-weight: 500;">
+            Huda Beauty Eyeshadow Palette
+          </p>
+          <p style="font-weight: 500; font-size: 16px">
+            Sold: 45
+          </p>
+          <p style="margin-top:10px; margin-bottom:10px;">
+            Rp 495.000
+          </p>
+          <form action="cart.html" method="GET">
+            <input type="hidden" name="idProduct" value="5" />
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="btn-add-to-cart">Add to Cart</button>
+          </form>
+          <a href="details.html?idProduct=5">            <button class="details-btn">View Details</button></a>
+        </div>
+
+        <!-- Produk 6 (Face) -->
+        <div class="product" data-category="1" data-id="6">
+          <a href="details.html?idProduct=6">
+            <img
+              class="product-image"
+              src="resources/assets/sample6.jpg"
+              width="292"
+              height="292"
+              alt="Product 6"
+            />
+          </a>
+          <p style="font-weight: 500;">
+            YSL Touche Éclat Glow Cushion
+          </p>
+          <p style="font-weight: 500; font-size: 16px">
+            Sold: 100
+          </p>
+          <p style="margin-top:10px; margin-bottom:10px;">
+            Rp 995.000
+          </p>
+          <form action="cart.html" method="GET">
+            <input type="hidden" name="idProduct" value="6" />
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="btn-add-to-cart">Add to Cart</button>
+          </form>
+          <a href="details.html?idProduct=6">            <button class="details-btn">View Details</button></a>
+        </div>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const buttons = document.querySelectorAll(".filter-btn");
+          const cards = document.querySelectorAll(".catalogue .product");
+          function apply(category) {
+            cards.forEach(card => {
+              const show = category === "all" || card.dataset.category === category;
+              card.style.display = show ? "" : "none";
+            });
+          }
+          buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+              buttons.forEach(b => b.classList.remove("active"));
+              btn.classList.add("active");
+              apply(btn.dataset.category);
+            });
+          });
+          apply("all");
+        });
+      </script>
+
+    @endslot
+  @end

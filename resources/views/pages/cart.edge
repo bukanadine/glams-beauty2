@@ -1,0 +1,67 @@
+@layout.app({title: 'Glams'})
+
+  @slot('meta')
+    @vite(['resources/css/styles-cart.css'])
+  @endslot
+  
+  @slot('main')
+<div class="shopping-cart">
+        <p style="margin-bottom: 30px;">Shopping Cart</p>
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <th>Products info</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <img style="width: 187px; height: 166px; object-fit: cover;" 
+                                src="assets/sample3.jpg" alt="Lipstik">
+                            <div class="product-details">
+                                <h3>Rose Inc Satin Lip Color Rich Refillable Lipstick</h3>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Rp220.000</td>
+                    <td>2</td>
+                    <td>Rp440.000</td>
+                    <td>
+                        <button class="submit-btn-red">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <img style="width: 187px; height: 166px; object-fit: cover;" 
+                                src="assets/sample2.jpg" alt="eyeshadow">
+                            <div class="product-details">
+                                <h3>Rare Beauty Soft Pinch Luminous Powder Blush2</h3>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Rp364.000</td>
+                    <td>1</td>
+                    <td>Rp364.000</td>
+                    <td>
+                        <button class="submit-btn-red">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: right; margin-top: 20px;">
+            <strong style="font-size: 24px;">Subtotal: Rp804.000</strong>
+        </div>
+        <div style="text-align: right; margin-top: 10px;">
+            <button class="btn-checkout">Checkout</button>
+        </div>
+    </div>
+
+    @endslot
+@end
+
